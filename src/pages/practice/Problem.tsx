@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ChevronLeft, Star, BookOpen, ArrowRight, Clock, Code } from 'lucide-react';
@@ -18,7 +17,6 @@ const Problem = () => {
   const [language, setLanguage] = useState<string>('python');
   const [isStarred, setIsStarred] = useState<boolean>(false);
   
-  // Get problem data
   const problem = detailedProblems[problemId || ''];
   
   if (!problem) {
@@ -41,7 +39,6 @@ const Problem = () => {
 
   const toggleStar = () => {
     setIsStarred(!isStarred);
-    // In a real app, this would also update the user's preferences in the database
   };
   
   return (
@@ -58,9 +55,7 @@ const Problem = () => {
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Main Content */}
             <div className="lg:col-span-2">
-              {/* Problem Header */}
               <div className="mb-6">
                 <div className="flex justify-between items-start">
                   <div>
@@ -94,7 +89,6 @@ const Problem = () => {
                 </div>
               </div>
               
-              {/* Problem Tabs */}
               <Tabs defaultValue="description" className="mt-6">
                 <TabsList className="w-full grid grid-cols-3">
                   <TabsTrigger value="description">Description</TabsTrigger>
@@ -102,7 +96,6 @@ const Problem = () => {
                   <TabsTrigger value="submissions">Submissions</TabsTrigger>
                 </TabsList>
                 
-                {/* Description Tab */}
                 <TabsContent value="description" className="mt-6">
                   <Card>
                     <CardContent className="pt-6">
@@ -115,7 +108,6 @@ const Problem = () => {
                   </Card>
                 </TabsContent>
                 
-                {/* Solution Tab */}
                 <TabsContent value="solution" className="mt-6">
                   <Card>
                     <CardContent className="pt-6 space-y-6">
@@ -155,7 +147,6 @@ const Problem = () => {
                           
                           <Separator />
                           
-                          {/* Selected Approach Details */}
                           <div>
                             <h3 className="text-xl font-bold mb-2">
                               {problem.approaches[selectedApproach].name}
@@ -201,7 +192,6 @@ const Problem = () => {
                   </Card>
                 </TabsContent>
                 
-                {/* Submissions Tab */}
                 <TabsContent value="submissions" className="mt-6">
                   <Card>
                     <CardContent className="pt-6">
@@ -217,9 +207,7 @@ const Problem = () => {
               </Tabs>
             </div>
             
-            {/* Sidebar */}
             <div className="space-y-6">
-              {/* Problem Status */}
               <Card className="overflow-hidden">
                 <div className="bg-primary px-6 py-4 text-primary-foreground">
                   <h2 className="font-bold text-lg">Problem Status</h2>
@@ -235,7 +223,6 @@ const Problem = () => {
                 </CardContent>
               </Card>
               
-              {/* Related Problems */}
               <Card>
                 <div className="bg-muted px-6 py-4">
                   <h2 className="font-bold text-lg">Related Problems</h2>
@@ -264,7 +251,6 @@ const Problem = () => {
                 </CardContent>
               </Card>
               
-              {/* Need Help */}
               <Card>
                 <CardContent className="pt-6">
                   <div className="text-center space-y-3">
