@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ChevronLeft, Star } from 'lucide-react';
@@ -93,7 +94,7 @@ const Problem = () => {
                 </TabsList>
                 
                 <TabsContent value="description" className="mt-6">
-                  <ProblemDescription description={problem.description} />
+                  <ProblemDescription description={Array.isArray(problem.description) ? problem.description : [problem.description || '']} />
                 </TabsContent>
                 
                 <TabsContent value="solution" className="mt-6">
