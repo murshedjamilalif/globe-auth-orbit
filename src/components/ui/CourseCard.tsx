@@ -1,10 +1,9 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import Badge from './Badge';
+import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
 interface CourseCardProps {
@@ -60,8 +59,7 @@ const CourseCard = ({
             </div>
           </div>
           <Badge 
-            variant={difficulty === 'easy' ? 'success' : difficulty === 'medium' ? 'warning' : 'danger'}
-            size="sm"
+            variant={difficulty === 'easy' ? 'default' : difficulty === 'medium' ? 'secondary' : 'destructive'}
             className="capitalize"
           >
             {difficulty}

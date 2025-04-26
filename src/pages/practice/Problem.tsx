@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ChevronLeft, Star } from 'lucide-react';
@@ -7,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import Badge from '@/components/ui/Badge';
+import { Badge } from '@/components/ui/badge';
 import { detailedProblems } from '@/data/problemData';
 import ProblemDescription from '@/components/problem/ProblemDescription';
 import ProblemSolution from '@/components/problem/ProblemSolution';
@@ -61,10 +60,9 @@ const Problem = () => {
                       <h1 className="text-3xl font-bold">{problem.title}</h1>
                       <Badge
                         variant={
-                          problem.difficulty === 'easy' ? 'success' :
-                          problem.difficulty === 'medium' ? 'warning' : 'danger'
+                          problem.difficulty === 'easy' ? 'default' :
+                          problem.difficulty === 'medium' ? 'secondary' : 'destructive'
                         }
-                        size="sm"
                         className="capitalize"
                       >
                         {problem.difficulty}
@@ -99,7 +97,7 @@ const Problem = () => {
                 </TabsContent>
                 
                 <TabsContent value="solution" className="mt-6">
-                  <ProblemSolution approaches={problem.approaches} />
+                  <ProblemSolution approaches={problem.approaches || []} />
                 </TabsContent>
                 
                 <TabsContent value="submissions" className="mt-6">

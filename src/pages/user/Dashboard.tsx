@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { BookOpen, Calendar, ChevronRight, Code, Star } from 'lucide-react';
+import { BookOpen, Calendar, ChevronRight, Code, Star, Check } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import ProblemCard from '@/components/ui/ProblemCard';

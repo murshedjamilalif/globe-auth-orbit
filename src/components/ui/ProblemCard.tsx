@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Check, Star } from 'lucide-react';
-import Badge from './Badge';
+import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
 export type ProblemStatus = 'solved' | 'unsolved' | 'starred';
@@ -58,10 +57,9 @@ const ProblemCard: React.FC<ProblemCardProps> = ({
           </div>
           <Badge
             variant={
-              difficulty === 'easy' ? 'success' :
-              difficulty === 'medium' ? 'warning' : 'danger'
+              difficulty === 'easy' ? 'default' :
+              difficulty === 'medium' ? 'secondary' : 'destructive'
             }
-            size="sm"
             className="capitalize"
           >
             {difficulty}
