@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Filter, Search } from 'lucide-react';
@@ -45,8 +46,8 @@ const Practice = () => {
             <h1 className="text-3xl font-bold mb-2">Arrays</h1>
             <ProblemList 
               problems={popularProblems}
-              totalProblems={10}
-              solvedProblems={2}
+              totalProblems={totalProblems}
+              solvedProblems={solvedProblems}
             />
           </div>
         </div>

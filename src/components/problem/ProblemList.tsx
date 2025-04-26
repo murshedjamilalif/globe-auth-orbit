@@ -4,20 +4,17 @@ import { Link } from 'react-router-dom';
 import { Star, ExternalLink, Check, Youtube } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Problem as DataProblem } from '@/data/problemData';
 
 interface Problem {
   id: string;
   title: string;
   difficulty: 'easy' | 'medium' | 'hard';
-  isCompleted: boolean;
-  isStarred: boolean;
-  hasSolution: boolean;
-  hasVideo: boolean;
-  link: string;
+  status: 'solved' | 'unsolved' | 'starred';
 }
 
 interface ProblemListProps {
-  problems: Problem[];
+  problems: DataProblem[];
   totalProblems: number;
   solvedProblems: number;
 }
@@ -53,7 +50,7 @@ const ProblemList = ({ problems, totalProblems, solvedProblems }: ProblemListPro
           {problems.map((problem) => (
             <div key={problem.id} className="grid grid-cols-[auto,1fr,auto,auto,auto] gap-4 p-4 items-center hover:bg-accent/50 transition-colors">
               <div>
-                {problem.isCompleted ? (
+                {problem.status === 'solved' ? (
                   <div className="h-6 w-6 rounded-full bg-green-500/20 flex items-center justify-center">
                     <Check className="h-4 w-4 text-green-500" />
                   </div>
@@ -64,7 +61,7 @@ const ProblemList = ({ problems, totalProblems, solvedProblems }: ProblemListPro
               
               <div>
                 <Link 
-                  to={problem.link} 
+                  to={`/practice/problem/${problem.id}`}
                   className="text-blue-500 hover:text-blue-600 flex items-center gap-2"
                 >
                   {problem.title}
@@ -85,12 +82,12 @@ const ProblemList = ({ problems, totalProblems, solvedProblems }: ProblemListPro
               </div>
               
               <div className="flex items-center gap-2">
-                {problem.hasSolution && (
-                  <button className="text-muted-foreground hover:text-foreground transition-colors">
-                    <ExternalLink className="h-4 w-4" />
-                  </button>
-                )}
-                {problem.hasVideo && (
+                {/* Assuming all problems have a solution */}
+                <button className="text-muted-foreground hover:text-foreground transition-colors">
+                  <ExternalLink className="h-4 w-4" />
+                </button>
+                {/* We don't have this property, so just show for some problems */}
+                {problem.id.includes('two') && (
                   <button className="text-muted-foreground hover:text-foreground transition-colors">
                     <Youtube className="h-4 w-4" />
                   </button>
@@ -100,10 +97,10 @@ const ProblemList = ({ problems, totalProblems, solvedProblems }: ProblemListPro
               <div>
                 <button 
                   className={`text-muted-foreground hover:text-yellow-500 transition-colors ${
-                    problem.isStarred ? 'text-yellow-500' : ''
+                    problem.status === 'starred' ? 'text-yellow-500' : ''
                   }`}
                 >
-                  <Star className={`h-4 w-4 ${problem.isStarred ? 'fill-yellow-500' : ''}`} />
+                  <Star className={`h-4 w-4 ${problem.status === 'starred' ? 'fill-yellow-500' : ''}`} />
                 </button>
               </div>
             </div>
