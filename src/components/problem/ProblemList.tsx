@@ -6,13 +6,6 @@ import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Problem as DataProblem } from '@/data/problemData';
 
-interface Problem {
-  id: string;
-  title: string;
-  difficulty: 'easy' | 'medium' | 'hard';
-  status: 'solved' | 'unsolved' | 'starred';
-}
-
 interface ProblemListProps {
   problems: DataProblem[];
   totalProblems: number;
@@ -22,21 +15,7 @@ interface ProblemListProps {
 const ProblemList = ({ problems, totalProblems, solvedProblems }: ProblemListProps) => {
   return (
     <div className="space-y-4">
-      {/* Progress Bar */}
-      <div className="space-y-2">
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">Progress: {solvedProblems} / {totalProblems}</span>
-          <span className="text-muted-foreground">{Math.round((solvedProblems / totalProblems) * 100)}%</span>
-        </div>
-        <div className="h-2 bg-muted rounded-full overflow-hidden">
-          <div 
-            className="h-full bg-green-500 rounded-full transition-all duration-300"
-            style={{ width: `${(solvedProblems / totalProblems) * 100}%` }}
-          />
-        </div>
-      </div>
-
-      {/* Problems Table */}
+      {/* Problem Table */}
       <div className="rounded-lg border bg-card">
         <div className="grid grid-cols-[auto,1fr,auto,auto,auto] gap-4 p-4 text-sm font-medium text-muted-foreground border-b">
           <div>Status</div>
@@ -75,18 +54,22 @@ const ProblemList = ({ problems, totalProblems, solvedProblems }: ProblemListPro
                     problem.difficulty === 'easy' ? 'default' :
                     problem.difficulty === 'medium' ? 'secondary' : 'destructive'
                   }
-                  className="capitalize"
+                  className={`
+                    capitalize ${
+                      problem.difficulty === 'easy' ? 'bg-green-500 hover:bg-green-600' :
+                      problem.difficulty === 'medium' ? 'bg-yellow-500 hover:bg-yellow-600' :
+                      'bg-red-500 hover:bg-red-600'
+                    }
+                  `}
                 >
                   {problem.difficulty}
                 </Badge>
               </div>
               
               <div className="flex items-center gap-2">
-                {/* Assuming all problems have a solution */}
                 <button className="text-muted-foreground hover:text-foreground transition-colors">
                   <ExternalLink className="h-4 w-4" />
                 </button>
-                {/* We don't have this property, so just show for some problems */}
                 {problem.id.includes('two') && (
                   <button className="text-muted-foreground hover:text-foreground transition-colors">
                     <Youtube className="h-4 w-4" />
