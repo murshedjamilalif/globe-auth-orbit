@@ -94,7 +94,7 @@ const ProblemSolution = ({ approaches }: ProblemSolutionProps) => {
             <h4 className="font-bold mb-2">Code</h4>
             <pre className="bg-muted p-4 rounded-md overflow-x-auto">
               <code>
-                {approaches[selectedApproach].code[language as keyof typeof approaches[0].code] || 
+                {approaches[selectedApproach].code[language] || 
                  "Code for this language is not available yet."}
               </code>
             </pre>
