@@ -60,8 +60,8 @@ const ProblemList = ({ problems, totalProblems, solvedProblems }: ProblemListPro
       initial="hidden"
       animate="visible"
     >
-      <div className="bg-card rounded-lg shadow-lg border border-border/30">
-        <div className="p-4 border-b border-border">
+      <div className="problem-container">
+        <div className="p-4 border-b border-[#333]">
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-semibold text-white flex items-center gap-2">
               Arrays
@@ -69,14 +69,18 @@ const ProblemList = ({ problems, totalProblems, solvedProblems }: ProblemListPro
             </h2>
             <span className="text-sm text-muted-foreground">Progress: {solvedProblems} / 10</span>
           </div>
-          <Progress value={(solvedProblems / 10) * 100} className="h-2" />
+          <Progress 
+            value={(solvedProblems / 10) * 100} 
+            className="progress-bar-easy" 
+            indicatorClassName="progress-indicator-easy" 
+          />
         </div>
 
         {problems.map((problem) => (
           <motion.div 
             key={problem.id}
             variants={itemVariants}
-            className="border-b border-border/30 last:border-b-0"
+            className="border-b border-[#333] last:border-b-0"
           >
             <Card className="bg-transparent border-0 shadow-none">
               <CardContent className="p-4">
@@ -91,7 +95,7 @@ const ProblemList = ({ problems, totalProblems, solvedProblems }: ProblemListPro
                     )}
                     <Link 
                       to={`/practice/problem/${problem.id}`}
-                      className="text-blue-500 hover:text-blue-600 flex items-center gap-2"
+                      className="text-[#00A3FF] hover:text-[#33c3f0] flex items-center gap-2"
                     >
                       {problem.title}
                     </Link>
@@ -113,17 +117,17 @@ const ProblemList = ({ problems, totalProblems, solvedProblems }: ProblemListPro
                 </div>
                 <div className="flex items-center justify-between mt-2">
                   <div className="flex items-center gap-2">
-                    <button className="text-muted-foreground hover:text-white transition-colors p-1 rounded-full hover:bg-accent">
+                    <button className="text-muted-foreground hover:text-white transition-colors p-1 rounded-full hover:bg-[#2a2a2a]">
                       <ExternalLink className="h-4 w-4" />
                     </button>
                     {problem.id.includes('two') && (
-                      <button className="text-muted-foreground hover:text-white transition-colors p-1 rounded-full hover:bg-accent">
+                      <button className="text-muted-foreground hover:text-white transition-colors p-1 rounded-full hover:bg-[#2a2a2a]">
                         <Youtube className="h-4 w-4" />
                       </button>
                     )}
                   </div>
                   <button 
-                    className={`text-muted-foreground hover:text-yellow-500 transition-colors p-1 rounded-full hover:bg-accent ${
+                    className={`text-muted-foreground hover:text-yellow-500 transition-colors p-1 rounded-full hover:bg-[#2a2a2a] ${
                       problem.status === 'starred' ? 'text-yellow-500' : ''
                     }`}
                   >
@@ -140,8 +144,8 @@ const ProblemList = ({ problems, totalProblems, solvedProblems }: ProblemListPro
 
   // Render table view for desktop
   const renderDesktopView = () => (
-    <div className="bg-card rounded-lg shadow-lg border border-border/30 overflow-hidden">
-      <div className="p-4 border-b border-border">
+    <div className="problem-container">
+      <div className="p-4 border-b border-[#333]">
         <div className="flex items-center justify-between mb-2">
           <h2 className="text-lg font-semibold text-white flex items-center gap-2">
             Arrays
@@ -149,27 +153,31 @@ const ProblemList = ({ problems, totalProblems, solvedProblems }: ProblemListPro
           </h2>
           <span className="text-sm text-muted-foreground">Progress: {solvedProblems} / 10</span>
         </div>
-        <Progress value={(solvedProblems / 10) * 100} className="h-2" />
+        <Progress 
+          value={(solvedProblems / 10) * 100} 
+          className="progress-bar-easy" 
+          indicatorClassName="progress-indicator-easy" 
+        />
       </div>
 
       <Table>
         <TableHeader>
-          <TableRow className="hover:bg-transparent border-border/30">
-            <TableHead className="w-[80px]">Status</TableHead>
-            <TableHead className="cursor-pointer group" onClick={() => handleSort('title')}>
+          <TableRow className="hover:bg-transparent border-[#333]">
+            <TableHead className="w-[80px] text-gray-400">Status</TableHead>
+            <TableHead className="cursor-pointer group text-gray-400" onClick={() => handleSort('title')}>
               <div className="flex items-center gap-1">
                 Problem {getSortIcon('title')}
                 <ChevronDown className="h-3 w-3 opacity-0 group-hover:opacity-50" />
               </div>
             </TableHead>
-            <TableHead className="w-[120px] cursor-pointer group" onClick={() => handleSort('difficulty')}>
+            <TableHead className="w-[120px] cursor-pointer group text-gray-400" onClick={() => handleSort('difficulty')}>
               <div className="flex items-center gap-1">
                 Difficulty {getSortIcon('difficulty')}
                 <ChevronDown className="h-3 w-3 opacity-0 group-hover:opacity-50" />
               </div>
             </TableHead>
-            <TableHead className="w-[100px]">Solution</TableHead>
-            <TableHead className="w-[80px]">Star</TableHead>
+            <TableHead className="w-[100px] text-gray-400">Solution</TableHead>
+            <TableHead className="w-[80px] text-gray-400">Star</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -182,7 +190,7 @@ const ProblemList = ({ problems, totalProblems, solvedProblems }: ProblemListPro
               <motion.tr
                 key={problem.id}
                 variants={itemVariants}
-                className="hover:bg-accent/50 transition-all border-border/30 even:bg-muted/5"
+                className="hover:bg-[#2a2a2a] transition-all border-[#333] even:bg-[#1a1a1a]"
                 layout
               >
                 <TableCell className="py-3">
@@ -197,7 +205,7 @@ const ProblemList = ({ problems, totalProblems, solvedProblems }: ProblemListPro
                 <TableCell>
                   <Link 
                     to={`/practice/problem/${problem.id}`}
-                    className="text-blue-500 hover:text-blue-600 flex items-center gap-2 transition-all hover:translate-x-1"
+                    className="text-[#00A3FF] hover:text-[#33c3f0] flex items-center gap-2 transition-all hover:translate-x-1"
                   >
                     {problem.title}
                     <ExternalLink className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -221,11 +229,11 @@ const ProblemList = ({ problems, totalProblems, solvedProblems }: ProblemListPro
                 </TableCell>
                 <TableCell>
                   <div className="flex items-center gap-2">
-                    <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
+                    <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full hover:bg-[#2a2a2a]">
                       <ExternalLink className="h-4 w-4" />
                     </Button>
                     {problem.id.includes('two') && (
-                      <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
+                      <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full hover:bg-[#2a2a2a]">
                         <Youtube className="h-4 w-4" />
                       </Button>
                     )}
@@ -235,7 +243,7 @@ const ProblemList = ({ problems, totalProblems, solvedProblems }: ProblemListPro
                   <Button 
                     variant="ghost" 
                     size="icon" 
-                    className={`h-8 w-8 rounded-full ${problem.status === 'starred' ? 'text-yellow-500' : ''}`}
+                    className={`h-8 w-8 rounded-full ${problem.status === 'starred' ? 'text-yellow-500' : ''} hover:bg-[#2a2a2a]`}
                   >
                     <Star className={`h-4 w-4 ${problem.status === 'starred' ? 'fill-yellow-500' : ''}`} />
                   </Button>

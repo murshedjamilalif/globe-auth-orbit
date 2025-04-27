@@ -83,7 +83,7 @@ const Practice = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#1A1F2C]">
+    <div className="flex flex-col min-h-screen bg-[#121212]">
       <Navbar />
       
       <motion.main 
@@ -100,7 +100,7 @@ const Practice = () => {
         >
           <motion.div className="text-center" variants={itemVariants}>
             <motion.h1 
-              className="text-4xl font-bold mb-2 text-white bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-teal-300"
+              className="text-4xl font-bold mb-2 text-white bg-clip-text text-transparent bg-gradient-to-r from-[#00A3FF] to-[#0BFFD5]"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -108,7 +108,7 @@ const Practice = () => {
               Master DSA Patterns
             </motion.h1>
             <motion.p 
-              className="text-muted-foreground mb-8 max-w-2xl mx-auto"
+              className="text-gray-400 mb-8 max-w-2xl mx-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
@@ -122,7 +122,7 @@ const Practice = () => {
               variants={itemVariants}
             >
               <motion.div 
-                className="p-6 rounded-xl bg-card border border-green-500/20 transition-all hover:border-green-500/50 hover:shadow-lg hover:shadow-green-500/10"
+                className="subscription-card border-green-500/20 p-6"
                 whileHover={{ scale: 1.02, y: -5 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
@@ -130,14 +130,14 @@ const Practice = () => {
                   <span className="text-xl flex items-center justify-center bg-green-500/20 p-2 rounded-full">
                     <Trophy />
                   </span>
-                  <div>
+                  <div className="text-left">
                     <span className="text-lg font-medium block">AlgoMaster 300</span>
-                    <span className="text-xs text-muted-foreground">3+ Months Preparation</span>
+                    <span className="text-xs text-gray-400">3+ Months Preparation</span>
                   </div>
                 </div>
               </motion.div>
               <motion.div 
-                className="p-6 rounded-xl bg-card border border-yellow-500/20 transition-all hover:border-yellow-500/50 hover:shadow-lg hover:shadow-yellow-500/10"
+                className="subscription-card border-yellow-500/20 p-6"
                 whileHover={{ scale: 1.02, y: -5 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
@@ -145,14 +145,14 @@ const Practice = () => {
                   <span className="text-xl flex items-center justify-center bg-yellow-500/20 p-2 rounded-full">
                     <Award />
                   </span>
-                  <div>
+                  <div className="text-left">
                     <span className="text-lg font-medium block">AlgoMaster 150</span>
-                    <span className="text-xs text-muted-foreground">1-3 Months Preparation</span>
+                    <span className="text-xs text-gray-400">1-3 Months Preparation</span>
                   </div>
                 </div>
               </motion.div>
               <motion.div 
-                className="p-6 rounded-xl bg-card border border-blue-500/20 transition-all hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10"
+                className="subscription-card border-blue-500/20 p-6"
                 whileHover={{ scale: 1.02, y: -5 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
@@ -160,9 +160,9 @@ const Practice = () => {
                   <span className="text-xl flex items-center justify-center bg-blue-500/20 p-2 rounded-full">
                     <Zap />
                   </span>
-                  <div>
+                  <div className="text-left">
                     <span className="text-lg font-medium block">AlgoMaster 75</span>
-                    <span className="text-xs text-muted-foreground">&lt;1 Month Preparation</span>
+                    <span className="text-xs text-gray-400">&lt;1 Month Preparation</span>
                   </div>
                 </div>
               </motion.div>
@@ -170,19 +170,19 @@ const Practice = () => {
 
             {/* Problem Stats */}
             <motion.div 
-              className="bg-card rounded-xl p-6 mb-8 shadow-lg border border-border/30"
+              className="bg-[#1C1C1C] rounded-xl p-6 mb-8 shadow-lg border border-[#333]"
               variants={itemVariants}
               whileHover={{ boxShadow: "0 8px 30px rgba(0,0,0,0.12)" }}
             >
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-semibold text-white">
-                  <span className="text-primary">{solvedProblems}</span> / {totalProblems} Problems Solved
+                  <span className="text-[#00A3FF]">{solvedProblems}</span> / {totalProblems} Problems Solved
                 </h2>
                 <div className="flex items-center gap-3">
-                  <span className="text-sm text-muted-foreground hidden md:inline-block">
+                  <span className="text-sm text-gray-400 hidden md:inline-block">
                     Overall completion:
                   </span>
-                  <div className="text-sm font-medium text-primary">
+                  <div className="text-sm font-medium text-[#00A3FF]">
                     {Math.round((solvedProblems / totalProblems) * 100)}%
                   </div>
                 </div>
@@ -193,14 +193,14 @@ const Practice = () => {
                     <div className="text-sm font-medium text-white flex items-center gap-1">
                       <span className="h-2 w-2 rounded-full bg-green-500"></span> Easy
                     </div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-sm text-gray-400">
                       {stats.easy.solved} / {stats.easy.total}
                     </div>
                   </div>
                   <Progress 
                     value={(stats.easy.solved / stats.easy.total) * 100} 
-                    className="h-2 bg-muted" 
-                    indicatorClassName="bg-green-500" 
+                    className="progress-bar-easy" 
+                    indicatorClassName="progress-indicator-easy" 
                   />
                 </div>
                 <div>
@@ -208,14 +208,14 @@ const Practice = () => {
                     <div className="text-sm font-medium text-white flex items-center gap-1">
                       <span className="h-2 w-2 rounded-full bg-yellow-500"></span> Medium
                     </div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-sm text-gray-400">
                       {stats.medium.solved} / {stats.medium.total}
                     </div>
                   </div>
                   <Progress 
                     value={(stats.medium.solved / stats.medium.total) * 100} 
-                    className="h-2 bg-muted" 
-                    indicatorClassName="bg-yellow-500"
+                    className="progress-bar-medium"
+                    indicatorClassName="progress-indicator-medium"
                   />
                 </div>
                 <div>
@@ -223,14 +223,14 @@ const Practice = () => {
                     <div className="text-sm font-medium text-white flex items-center gap-1">
                       <span className="h-2 w-2 rounded-full bg-red-500"></span> Hard
                     </div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-sm text-gray-400">
                       {stats.hard.solved} / {stats.hard.total}
                     </div>
                   </div>
                   <Progress 
                     value={(stats.hard.solved / stats.hard.total) * 100} 
-                    className="h-2 bg-muted"
-                    indicatorClassName="bg-red-500" 
+                    className="progress-bar-hard"
+                    indicatorClassName="progress-indicator-hard"
                   />
                 </div>
               </div>
@@ -245,7 +245,7 @@ const Practice = () => {
                 <Button 
                   onClick={() => setShowFilters(!showFilters)} 
                   variant="outline" 
-                  className="w-full flex items-center justify-center gap-2"
+                  className="w-full flex items-center justify-center gap-2 bg-[#1C1C1C] border-[#333] text-white"
                 >
                   <Filter className="w-4 h-4" /> 
                   {showFilters ? 'Hide Filters' : 'Show Filters'}
@@ -257,7 +257,7 @@ const Practice = () => {
             <AnimatePresence>
               {(!isMobile || showFilters) && (
                 <motion.div 
-                  className="rounded-xl bg-card p-6 mb-8 shadow-lg border border-border/30"
+                  className="filter-container mb-8"
                   variants={itemVariants}
                   initial={isMobile ? { height: 0, opacity: 0 } : { opacity: 0 }}
                   animate={isMobile ? { height: 'auto', opacity: 1 } : { opacity: 1 }}
@@ -269,23 +269,23 @@ const Practice = () => {
                     <div className="space-y-2">
                       <label htmlFor="search" className="text-sm text-white">Search</label>
                       <div className="relative">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                         <Input
                           id="search"
                           placeholder="Search problems..."
                           value={searchQuery}
                           onChange={(e) => setSearchQuery(e.target.value)}
-                          className="pl-9 bg-background/40 border-border/50 focus-visible:ring-primary"
+                          className="pl-9 bg-[#252525] border-[#333] focus-visible:ring-[#00A3FF] text-white"
                         />
                       </div>
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="status" className="text-sm text-white">Status</label>
                       <Select value={statusFilter} onValueChange={setStatusFilter}>
-                        <SelectTrigger id="status" className="bg-background/40 border-border/50">
+                        <SelectTrigger id="status" className="bg-[#252525] border-[#333] text-white">
                           <SelectValue placeholder="All Status" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-[#252525] border-[#333] text-white">
                           <SelectItem value="all">All Status</SelectItem>
                           <SelectItem value="solved">Solved</SelectItem>
                           <SelectItem value="unsolved">Unsolved</SelectItem>
@@ -296,10 +296,10 @@ const Practice = () => {
                     <div className="space-y-2">
                       <label htmlFor="difficulty" className="text-sm text-white">Difficulty</label>
                       <Select value={difficultyFilter} onValueChange={setDifficultyFilter}>
-                        <SelectTrigger id="difficulty" className="bg-background/40 border-border/50">
+                        <SelectTrigger id="difficulty" className="bg-[#252525] border-[#333] text-white">
                           <SelectValue placeholder="All Difficulties" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-[#252525] border-[#333] text-white">
                           <SelectItem value="all">All Difficulties</SelectItem>
                           <SelectItem value="easy">Easy</SelectItem>
                           <SelectItem value="medium">Medium</SelectItem>
@@ -310,10 +310,10 @@ const Practice = () => {
                     <div className="space-y-2">
                       <label htmlFor="pattern" className="text-sm text-white">Pattern</label>
                       <Select value={patternFilter} onValueChange={setPatternFilter}>
-                        <SelectTrigger id="pattern" className="bg-background/40 border-border/50">
+                        <SelectTrigger id="pattern" className="bg-[#252525] border-[#333] text-white">
                           <SelectValue placeholder="All Patterns" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-[#252525] border-[#333] text-white">
                           <SelectItem value="all">All Patterns</SelectItem>
                           <SelectItem value="arrays">Arrays</SelectItem>
                           <SelectItem value="two-pointers">Two Pointers</SelectItem>
@@ -328,11 +328,11 @@ const Practice = () => {
                   <div className="flex flex-col md:flex-row items-center gap-4">
                     <div className="w-full md:w-auto">
                       <label htmlFor="language" className="text-sm text-white block mb-2">Preferred Language</label>
-                      <ToggleGroup type="single" value={preferredLanguage} onValueChange={(value) => value && setPreferredLanguage(value)}>
-                        <ToggleGroupItem value="javascript" className="text-xs">JavaScript</ToggleGroupItem>
-                        <ToggleGroupItem value="python" className="text-xs">Python</ToggleGroupItem>
-                        <ToggleGroupItem value="java" className="text-xs">Java</ToggleGroupItem>
-                        <ToggleGroupItem value="cpp" className="text-xs">C++</ToggleGroupItem>
+                      <ToggleGroup type="single" value={preferredLanguage} onValueChange={(value) => value && setPreferredLanguage(value)} className="bg-[#252525] rounded-md p-1">
+                        <ToggleGroupItem value="javascript" className="text-xs data-[state=on]:bg-[#1a1a1a] data-[state=on]:text-white">JavaScript</ToggleGroupItem>
+                        <ToggleGroupItem value="python" className="text-xs data-[state=on]:bg-[#1a1a1a] data-[state=on]:text-white">Python</ToggleGroupItem>
+                        <ToggleGroupItem value="java" className="text-xs data-[state=on]:bg-[#1a1a1a] data-[state=on]:text-white">Java</ToggleGroupItem>
+                        <ToggleGroupItem value="cpp" className="text-xs data-[state=on]:bg-[#1a1a1a] data-[state=on]:text-white">C++</ToggleGroupItem>
                       </ToggleGroup>
                     </div>
                     
@@ -343,11 +343,11 @@ const Practice = () => {
                           Daily Practice
                         </Label>
                       </div>
-                      <Button variant="outline" size="sm" onClick={() => setStatusFilter('starred')}>
+                      <Button variant="outline" size="sm" onClick={() => setStatusFilter('starred')} className="border-[#333] bg-[#252525] text-white hover:bg-[#333]">
                         <Star className="w-4 h-4 mr-1" fill={statusFilter === 'starred' ? 'currentColor' : 'none'} />
                         Starred
                       </Button>
-                      <Button variant="outline" size="sm" onClick={handleReset}>
+                      <Button variant="outline" size="sm" onClick={handleReset} className="border-[#333] bg-[#252525] text-white hover:bg-[#333]">
                         <RotateCcw className="w-4 h-4 mr-1" />
                         Reset
                       </Button>
@@ -378,7 +378,7 @@ const Practice = () => {
                           e.preventDefault();
                           if (currentPage > 1) setCurrentPage(currentPage - 1);
                         }}
-                        className={currentPage === 1 ? "pointer-events-none opacity-50" : ""}
+                        className={`bg-[#1C1C1C] border border-[#333] text-white hover:bg-[#252525] ${currentPage === 1 ? "pointer-events-none opacity-50" : ""}`}
                       />
                     </PaginationItem>
                     
@@ -404,6 +404,7 @@ const Practice = () => {
                               setCurrentPage(pageNum);
                             }}
                             isActive={currentPage === pageNum}
+                            className={currentPage === pageNum ? "bg-[#00A3FF] text-white border-[#00A3FF]" : "bg-[#1C1C1C] border border-[#333] text-white hover:bg-[#252525]"}
                           >
                             {pageNum}
                           </PaginationLink>
@@ -418,7 +419,7 @@ const Practice = () => {
                           e.preventDefault();
                           if (currentPage < totalPages) setCurrentPage(currentPage + 1);
                         }}
-                        className={currentPage === totalPages ? "pointer-events-none opacity-50" : ""}
+                        className={`bg-[#1C1C1C] border border-[#333] text-white hover:bg-[#252525] ${currentPage === totalPages ? "pointer-events-none opacity-50" : ""}`}
                       />
                     </PaginationItem>
                   </PaginationContent>
