@@ -5,33 +5,30 @@
 
 @layer base {
   :root {
-    --background: 220 13% 10%;
-    --foreground: 210 40% 98%;
-
-    --card: 220 13% 12%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 196 95% 48%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 166 95% 50%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 50.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 196 95% 48%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 100%;
+    
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    
+    --primary: 196 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 166 100% 50%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --accent: 0 0% 12%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --ring: 196 100% 50%;
+    
+    --radius: 0.5rem;
   }
 }
 
@@ -39,111 +36,32 @@
   * {
     @apply border-border;
   }
-
+  
   body {
-    @apply bg-[#0A0A0A] text-foreground;
+    @apply bg-black text-foreground;
   }
 }
 
-.hover-scale {
-  @apply transition-transform duration-200 hover:scale-105;
-}
-
-.glow-effect {
-  @apply relative;
-}
-
-.glow-effect::before {
-  content: "";
-  @apply absolute inset-0 rounded-md bg-gradient-to-r from-[#00A3FF] to-[#0BFFD5] bg-opacity-30 blur-lg opacity-0 transition-opacity duration-300 -z-10;
-}
-
-.glow-effect:hover::before {
-  @apply opacity-70;
-}
-
-.pattern-link {
-  @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
-}
-
-/* Dark mode styles for the practice page */
-.problem-container {
-  @apply bg-[#121212] border border-[#2A2A2A] rounded-lg overflow-hidden shadow-lg;
+.subscription-card {
+  @apply bg-[#1C1C1C] border border-[#333] rounded-lg p-6 hover:border-[#00A3FF]/30 transition-all duration-300;
 }
 
 .filter-container {
-  @apply bg-[#121212] border border-[#2A2A2A] rounded-lg p-6 shadow-lg;
+  @apply bg-[#1C1C1C] border border-[#333] rounded-lg p-6;
 }
 
-.subscription-card {
-  @apply bg-[#121212] border-2 border-[#2A2A2A] rounded-xl transition-all hover:shadow-xl hover:border-[#00A3FF]/30 hover:scale-105 duration-300;
-}
-
-.progress-bar-easy {
-  @apply h-2 bg-[#1C1C1C] rounded-full overflow-hidden;
-}
-
-.progress-bar-medium {
-  @apply h-2 bg-[#1C1C1C] rounded-full overflow-hidden;
-}
-
-.progress-bar-hard {
+.progress-bar {
   @apply h-2 bg-[#1C1C1C] rounded-full overflow-hidden;
 }
 
 .progress-indicator-easy {
-  @apply h-full bg-gradient-to-r from-[#00A3FF] to-[#0BFFD5];
+  @apply h-full bg-gradient-to-r from-green-500 to-green-400;
 }
 
 .progress-indicator-medium {
-  @apply h-full bg-gradient-to-r from-[#FFB86C] to-[#FF9F43];
+  @apply h-full bg-gradient-to-r from-yellow-500 to-yellow-400;
 }
 
 .progress-indicator-hard {
-  @apply h-full bg-gradient-to-r from-[#FF5555] to-[#FF3366];
+  @apply h-full bg-gradient-to-r from-red-500 to-red-400;
 }
-
-/* Table styles */
-.problem-table {
-  @apply w-full border-collapse;
-}
-
-.problem-table th {
-  @apply bg-[#1A1A1A] text-gray-400 font-medium py-3 px-4 text-left border-b border-[#2A2A2A];
-}
-
-.problem-table td {
-  @apply py-4 px-4 border-b border-[#2A2A2A];
-}
-
-.problem-table tr:hover {
-  @apply bg-[#1A1A1A] transition-colors duration-200;
-}
-
-/* Button gradients */
-.gradient-button {
-  @apply relative overflow-hidden transition-all duration-300;
-}
-
-.gradient-button::before {
-  content: '';
-  @apply absolute inset-0 bg-gradient-to-r from-[#00A3FF] to-[#0BFFD5] opacity-0 transition-opacity duration-300;
-}
-
-.gradient-button:hover::before {
-  @apply opacity-20;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  @apply w-2;
-}
-
-::-webkit-scrollbar-track {
-  @apply bg-[#1A1A1A];
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-[#2A2A2A] rounded-full hover:bg-[#3A3A3A] transition-colors duration-200;
-}
-
