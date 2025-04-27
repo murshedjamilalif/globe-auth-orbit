@@ -45,36 +45,43 @@ const Practice = () => {
     }
   };
 
+  const handleReset = () => {
+    setSearchQuery('');
+    setStatusFilter('all');
+    setDifficultyFilter('all');
+    setPatternFilter('all');
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-[#1A1F2C]">
       <Navbar />
       
-      <main className="flex-grow container mx-auto px-4 pt-24 pb-16">
+      <main className="flex-grow container mx-auto px-4 pt-24 pb-16 max-w-[1200px]">
         <div className="space-y-8">
-          <div>
-            <h1 className="text-3xl font-bold mb-4 text-white">Master DSA Patterns</h1>
+          <div className="text-center">
+            <h1 className="text-4xl font-bold mb-4 text-white">Master DSA Patterns</h1>
             <p className="text-muted-foreground mb-8">Practice curated LeetCode problems organized by patterns.</p>
             
             {/* Subscription Tiers */}
-            <div className="grid grid-cols-3 gap-4 mb-8">
-              <div className="p-4 rounded-lg bg-[#1A1F2C] border border-green-500/20">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+              <div className="p-6 rounded-lg bg-card border border-green-500/20 transition-all hover:border-green-500/50">
                 <div className="flex items-center gap-2 text-white">
                   <span className="text-xl">🏆</span>
-                  <span>AlgoMaster 300</span>
+                  <span className="text-lg font-medium">AlgoMaster 300</span>
                   <span className="text-xs text-muted-foreground">(3+ Months)</span>
                 </div>
               </div>
-              <div className="p-4 rounded-lg bg-[#1A1F2C] border border-yellow-500/20">
+              <div className="p-6 rounded-lg bg-card border border-yellow-500/20 transition-all hover:border-yellow-500/50">
                 <div className="flex items-center gap-2 text-white">
                   <span className="text-xl">💪</span>
-                  <span>AlgoMaster 150</span>
+                  <span className="text-lg font-medium">AlgoMaster 150</span>
                   <span className="text-xs text-muted-foreground">(1-3 Months)</span>
                 </div>
               </div>
-              <div className="p-4 rounded-lg bg-[#1A1F2C] border border-blue-500/20">
+              <div className="p-6 rounded-lg bg-card border border-blue-500/20 transition-all hover:border-blue-500/50">
                 <div className="flex items-center gap-2 text-white">
                   <span className="text-xl">⚡</span>
-                  <span>AlgoMaster 75</span>
+                  <span className="text-lg font-medium">AlgoMaster 75</span>
                   <span className="text-xs text-muted-foreground">(&lt;1 Month)</span>
                 </div>
               </div>
@@ -82,86 +89,128 @@ const Practice = () => {
 
             {/* Problem Stats */}
             <div className="bg-card rounded-lg p-6 mb-8">
-              <div className="text-sm text-muted-foreground mb-2">
-                {solvedProblems} / {totalProblems} Solved
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-semibold text-white">{solvedProblems} / {totalProblems} Solved</h2>
               </div>
-              <div className="grid grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                  <div className="text-sm mb-1 text-white">Easy</div>
+                  <div className="flex justify-between mb-1">
+                    <div className="text-sm text-white">Easy</div>
+                    <div className="text-sm text-muted-foreground">
+                      {stats.easy.solved} / {stats.easy.total}
+                    </div>
+                  </div>
                   <Progress value={(stats.easy.solved / stats.easy.total) * 100} className="h-2 bg-muted" />
-                  <div className="text-xs text-muted-foreground mt-1">
-                    {stats.easy.solved} / {stats.easy.total}
-                  </div>
                 </div>
                 <div>
-                  <div className="text-sm mb-1 text-white">Medium</div>
+                  <div className="flex justify-between mb-1">
+                    <div className="text-sm text-white">Medium</div>
+                    <div className="text-sm text-muted-foreground">
+                      {stats.medium.solved} / {stats.medium.total}
+                    </div>
+                  </div>
                   <Progress value={(stats.medium.solved / stats.medium.total) * 100} className="h-2 bg-muted" />
-                  <div className="text-xs text-muted-foreground mt-1">
-                    {stats.medium.solved} / {stats.medium.total}
-                  </div>
                 </div>
                 <div>
-                  <div className="text-sm mb-1 text-white">Hard</div>
-                  <Progress value={(stats.hard.solved / stats.hard.total) * 100} className="h-2 bg-muted" />
-                  <div className="text-xs text-muted-foreground mt-1">
-                    {stats.hard.solved} / {stats.hard.total}
+                  <div className="flex justify-between mb-1">
+                    <div className="text-sm text-white">Hard</div>
+                    <div className="text-sm text-muted-foreground">
+                      {stats.hard.solved} / {stats.hard.total}
+                    </div>
                   </div>
+                  <Progress value={(stats.hard.solved / stats.hard.total) * 100} className="h-2 bg-muted" />
                 </div>
               </div>
             </div>
 
             {/* Filters Section */}
             <div className="rounded-lg bg-card p-6 mb-8">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-                <Input
-                  placeholder="Search problems..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="col-span-2 md:col-span-1"
-                />
-                <Select value={statusFilter} onValueChange={setStatusFilter}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Status" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Status</SelectItem>
-                    <SelectItem value="solved">Solved</SelectItem>
-                    <SelectItem value="unsolved">Unsolved</SelectItem>
-                    <SelectItem value="starred">Starred</SelectItem>
-                  </SelectContent>
-                </Select>
-                <Select value={difficultyFilter} onValueChange={setDifficultyFilter}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Difficulty" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Difficulties</SelectItem>
-                    <SelectItem value="easy">Easy</SelectItem>
-                    <SelectItem value="medium">Medium</SelectItem>
-                    <SelectItem value="hard">Hard</SelectItem>
-                  </SelectContent>
-                </Select>
-                <Select value={preferredLanguage} onValueChange={setPreferredLanguage}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Language" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="javascript">JavaScript</SelectItem>
-                    <SelectItem value="python">Python</SelectItem>
-                    <SelectItem value="java">Java</SelectItem>
-                  </SelectContent>
-                </Select>
+              <h2 className="text-xl font-semibold text-white mb-4">Filters</h2>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                <div className="space-y-2">
+                  <label htmlFor="search" className="text-sm text-white">Search</label>
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input
+                      id="search"
+                      placeholder="Search problems..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="pl-9"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="status" className="text-sm text-white">Status</label>
+                  <Select value={statusFilter} onValueChange={setStatusFilter}>
+                    <SelectTrigger id="status">
+                      <SelectValue placeholder="All Status" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Status</SelectItem>
+                      <SelectItem value="solved">Solved</SelectItem>
+                      <SelectItem value="unsolved">Unsolved</SelectItem>
+                      <SelectItem value="starred">Starred</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="difficulty" className="text-sm text-white">Difficulty</label>
+                  <Select value={difficultyFilter} onValueChange={setDifficultyFilter}>
+                    <SelectTrigger id="difficulty">
+                      <SelectValue placeholder="All Difficulties" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Difficulties</SelectItem>
+                      <SelectItem value="easy">Easy</SelectItem>
+                      <SelectItem value="medium">Medium</SelectItem>
+                      <SelectItem value="hard">Hard</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="pattern" className="text-sm text-white">Pattern</label>
+                  <Select value={patternFilter} onValueChange={setPatternFilter}>
+                    <SelectTrigger id="pattern">
+                      <SelectValue placeholder="All Patterns" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Patterns</SelectItem>
+                      <SelectItem value="arrays">Arrays</SelectItem>
+                      <SelectItem value="two-pointers">Two Pointers</SelectItem>
+                      <SelectItem value="sliding-window">Sliding Window</SelectItem>
+                      <SelectItem value="dfs-bfs">DFS & BFS</SelectItem>
+                      <SelectItem value="dynamic-programming">Dynamic Programming</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
 
-              <div className="flex items-center gap-2">
-                <Button variant="outline" size="sm" className="text-muted-foreground">
-                  <Star className="w-4 h-4 mr-1" />
-                  Starred
-                </Button>
-                <Button variant="outline" size="sm" className="text-muted-foreground">
-                  <RotateCcw className="w-4 h-4 mr-1" />
-                  Reset
-                </Button>
+              <div className="flex flex-col md:flex-row gap-3 md:gap-2">
+                <div className="space-y-2">
+                  <label htmlFor="language" className="text-sm text-white">Preferred Language</label>
+                  <Select value={preferredLanguage} onValueChange={setPreferredLanguage}>
+                    <SelectTrigger id="language" className="w-[180px]">
+                      <SelectValue placeholder="JavaScript" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="javascript">JavaScript</SelectItem>
+                      <SelectItem value="python">Python</SelectItem>
+                      <SelectItem value="java">Java</SelectItem>
+                      <SelectItem value="cpp">C++</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="flex items-end gap-2">
+                  <Button variant="outline" size="sm" onClick={() => setStatusFilter('starred')}>
+                    <Star className="w-4 h-4 mr-1" />
+                    Starred
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={handleReset}>
+                    <RotateCcw className="w-4 h-4 mr-1" />
+                    Reset
+                  </Button>
+                </div>
               </div>
             </div>
 
