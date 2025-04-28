@@ -1,22 +1,25 @@
 
-import React, { useEffect, useRef } from "react";
-import createGlobe from "cobe";
+import React, { useRef, useEffect } from 'react';
+import createGlobe from 'cobe';
 
-export function Globe() {
+const Globe: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  
+
   useEffect(() => {
     let phi = 0;
     let width = 0;
     
-    const onResize = () =>
-      canvasRef.current && (width = canvasRef.current.offsetWidth);
+    const onResize = () => {
+      if (canvasRef.current) {
+        width = canvasRef.current.offsetWidth;
+      }
+    };
     
-    window.addEventListener("resize", onResize);
+    window.addEventListener('resize', onResize);
     onResize();
     
     if (!canvasRef.current) return;
-    
+
     const globe = createGlobe(canvasRef.current, {
       devicePixelRatio: 2,
       width: width * 2,
@@ -27,13 +30,11 @@ export function Globe() {
       diffuse: 3,
       mapSamples: 16000,
       mapBrightness: 1.2,
-      baseColor: [1, 1, 1],
-      markerColor: [251 / 255, 100 / 255, 21 / 255],
-      glowColor: [1.2, 1.2, 1.2],
+      baseColor: [0.1, 0.1, 0.2],
+      markerColor: [0.9, 0.4, 0.1],
+      glowColor: [0.4, 0.4, 1],
       markers: [],
       onRender: (state) => {
-        // Called on every animation frame.
-        // `state` will be an empty object, return updated params.
         state.phi = phi;
         phi += 0.005;
         state.width = width * 2;
@@ -42,27 +43,28 @@ export function Globe() {
     });
     
     setTimeout(() => {
-      if (canvasRef.current) canvasRef.current.style.opacity = "1";
-    });
+      if (canvasRef.current) {
+        canvasRef.current.style.opacity = '1';
+      }
+    }, 100);
     
     return () => {
       globe.destroy();
-      window.removeEventListener("resize", onResize);
+      window.removeEventListener('resize', onResize);
     };
   }, []);
   
   return (
     <div
-      className="w-full max-w-[600px] mx-auto relative"
-      style={{ aspectRatio: "1" }}
+      className="w-full max-w-xl aspect-square mx-auto relative"
     >
       <canvas
         ref={canvasRef}
-        className="w-full h-full transition-opacity duration-1000 opacity-0"
-        style={{ contain: "layout paint size" }}
+        className="w-full h-full opacity-0 transition-opacity duration-1000"
+        style={{ contain: 'layout paint size' }}
       />
     </div>
   );
-}
+};
 
 export default Globe;
