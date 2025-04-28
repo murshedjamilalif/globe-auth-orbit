@@ -1,37 +1,45 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from './contexts/ThemeContext';
 
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import Learn from "./pages/learn/Learn";
-import Practice from "./pages/practice/Practice";
-import Problem from "./pages/practice/Problem";
-import Dashboard from "./pages/user/Dashboard";
-import Login from "./pages/auth/Login";
-import NotFound from "./pages/NotFound";
+// Layout components
+import MainLayout from './layouts/MainLayout';
 
-const queryClient = new QueryClient();
+// Pages
+import HomePage from './pages/HomePage';
+import LearnPage from './pages/LearnPage';
+import ExplorePage from './pages/ExplorePage';
+import PracticePage from './pages/PracticePage';
+import ProblemPage from './pages/ProblemPage';
+import LLDPage from './pages/LLDPage';
+import ProfilePage from './pages/ProfilePage';
+import NotFoundPage from './pages/NotFoundPage';
+import SparklesDemoPage from './pages/SparklesDemoPage';
+import AdminDashboardPage from './pages/AdminDashboardPage';
+import CertificationsPage from './pages/CertificationsPage';
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
+function App() {
+  return (
+    <ThemeProvider>
+      <Router>
         <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/learn" element={<Learn />} />
-          <Route path="/practice" element={<Practice />} />
-          <Route path="/practice/problem/:problemId" element={<Problem />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/" element={<MainLayout />}>
+            <Route index element={<HomePage />} />
+            <Route path="learn" element={<LearnPage />} />
+            <Route path="explore" element={<ExplorePage />} />
+            <Route path="practice" element={<PracticePage />} />
+            <Route path="problem/:id" element={<ProblemPage />} />
+            <Route path="lld" element={<LLDPage />} />
+            <Route path="profile" element={<ProfilePage />} />
+            <Route path="certifications" element={<CertificationsPage />} />
+            <Route path="sparkles" element={<SparklesDemoPage />} />
+            <Route path="admin" element={<AdminDashboardPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
         </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+      </Router>
+    </ThemeProvider>
+  );
+}
 
 export default App;
