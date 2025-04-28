@@ -9,10 +9,9 @@ const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Learn', path: '/learn', icon: <BookOpen size={18} /> },
     { name: 'Explore', path: '/explore', icon: <CompassIcon size={18} /> },
     { name: 'Practice', path: '/practice', icon: <Brain size={18} /> },
-    { name: 'Certifications', path: '/certifications', icon: <Award size={18} /> },
+    { name: 'Prepare', path: '/certifications', icon: <Award size={18} /> },
     { name: 'Newsletter', path: '/newsletter', icon: <Mail size={18} /> },
     { name: 'Admin', path: '/admin', icon: <Grid size={18} /> },
   ];
