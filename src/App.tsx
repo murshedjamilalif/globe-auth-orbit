@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
@@ -17,12 +18,14 @@ import NotFoundPage from './pages/NotFoundPage';
 import SparklesDemoPage from './pages/SparklesDemoPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import CertificationsPage from './pages/CertificationsPage';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   return (
     <ThemeProvider>
       <Router>
         <Routes>
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<MainLayout />}>
             <Route index element={<HomePage />} />
             <Route path="learn" element={<LearnPage />} />

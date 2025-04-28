@@ -30,3 +30,7 @@
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
+
+.text-gradient {
+  @apply bg-gradient-to-r from-algomaster-blue to-algomaster-green bg-clip-text text-transparent;
+}
