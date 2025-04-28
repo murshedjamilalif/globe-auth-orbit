@@ -1,11 +1,21 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useState } from "react";
+import { Globe } from "@/components/Globe";
+import { AuthBox } from "@/components/AuthBox";
 
 const Index = () => {
+  const [activeTab, setActiveTab] = useState<"signin" | "signup">("signin");
+  
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="min-h-screen flex flex-col md:flex-row bg-black text-white overflow-hidden">
+      {/* Left side - Globe */}
+      <div className="w-full md:w-1/2 flex items-center justify-center p-4 md:p-8">
+        <Globe />
+      </div>
+      
+      {/* Right side - Auth Box */}
+      <div className="w-full md:w-1/2 flex items-center justify-center p-4 md:p-8">
+        <AuthBox activeTab={activeTab} setActiveTab={setActiveTab} />
       </div>
     </div>
   );
