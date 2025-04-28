@@ -147,7 +147,7 @@ const HomePage: React.FC = () => {
 
   function TerminalDemo() {
     return (
-      <Terminal className="w-full max-w-lg shadow-xl shadow-blue-500/10">
+      <Terminal className="w-full shadow-xl shadow-blue-500/10">
         <TypingAnimation>&gt; pnpm dlx shadcn@latest init</TypingAnimation>
 
         <AnimatedSpan delay={1500} className="text-green-500">
@@ -233,7 +233,7 @@ const HomePage: React.FC = () => {
         {/* Fixed height section for main content with proper spacing */}
         <div className="absolute inset-x-0 top-0 h-screen flex flex-col items-center z-20">
           {/* Main CTA - positioned well below the title */}
-          <div className="mt-[60vh] flex flex-col items-center gap-12 w-full px-4">
+          <div className="mt-[70vh] flex flex-col items-center gap-20 w-full px-4">
             {/* Start Coding Journey Button */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -272,7 +272,7 @@ const HomePage: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.2 }}
-              className="w-full max-w-2xl"
+              className="w-full max-w-xl mx-auto"
             >
               <TerminalDemo />
             </motion.div>
@@ -280,7 +280,7 @@ const HomePage: React.FC = () => {
         </div>
 
         {/* Programming Languages Section - moved further down */}
-        <div className="absolute top-[115vh] left-0 right-0 flex justify-center z-20 px-4">
+        <div className="absolute top-[140vh] left-0 right-0 flex justify-center z-20 px-4">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -360,7 +360,7 @@ const HomePage: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 2 }}
-          className="absolute bottom-0 left-0 right-0 w-full z-30"
+          className="absolute bottom-10 left-0 right-0 w-full z-30"
         >
           <div className="py-8 bg-black/20 backdrop-blur-sm">
             <Marquee speed={30} className="h-16">
@@ -378,7 +378,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Features Section - ensure this starts after the hero section */}
-      <section className="relative py-24 px-4 md:px-8 lg:px-16 bg-gradient-to-b from-black to-gray-900 mt-[50vh]">
+      <section className="relative py-24 px-4 md:px-8 lg:px-16 bg-gradient-to-b from-black to-gray-900 mt-[60vh]">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial="hidden"
@@ -420,3 +420,4 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
+
