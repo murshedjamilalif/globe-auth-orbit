@@ -230,23 +230,10 @@ const HomePage: React.FC = () => {
           className="z-10"
         />
 
-        <div className="absolute inset-x-0 top-[35vh] flex justify-center z-30">
-          <motion.button 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(255,255,255,0.3)" }}
-            whileTap={{ scale: 0.95 }}
-            className="relative font-bold bg-white rounded-full px-10 py-5 text-xl text-black w-fit overflow-hidden group"
-          >
-            <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></span>
-            AlgoMaster Pro
-          </motion.button>
-        </div>
-
-        {/* Center content container */}
-        <div className="absolute inset-0 top-[45vh] flex items-start justify-center z-20 px-4 w-full">
-          <div className="flex flex-col items-center max-w-2xl w-full">
+        {/* Fixed height section for main content with proper spacing */}
+        <div className="absolute inset-x-0 top-0 h-screen flex flex-col items-center z-20">
+          {/* Main CTA - positioned well below the title */}
+          <div className="mt-[60vh] flex flex-col items-center gap-12 w-full px-4">
             {/* Start Coding Journey Button */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -285,36 +272,15 @@ const HomePage: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.2 }}
-              className="mt-10 w-full"
+              className="w-full max-w-2xl"
             >
               <TerminalDemo />
             </motion.div>
           </div>
         </div>
 
-        {/* Technology Marquee */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 2 }}
-          className="absolute bottom-[15vh] left-0 right-0 w-full z-30"
-        >
-          <div className="py-8 bg-black/20 backdrop-blur-sm">
-            <Marquee speed={30} className="h-16">
-              {techLogos.map((Logo, index) => (
-                <div
-                  key={index}
-                  className="relative h-full w-fit mx-[4rem] flex items-center justify-start"
-                >
-                  <Logo />
-                </div>
-              ))}
-            </Marquee>
-          </div>
-        </motion.div>
-        
-        {/* Floating tech stack */}
-        <div className="absolute bottom-[30vh] left-0 right-0 hidden md:flex justify-center z-20">
+        {/* Programming Languages Section - moved further down */}
+        <div className="absolute top-[115vh] left-0 right-0 flex justify-center z-20 px-4">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -388,10 +354,31 @@ const HomePage: React.FC = () => {
             ))}
           </motion.div>
         </div>
+
+        {/* Technology Marquee - moved to the very bottom */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 2 }}
+          className="absolute bottom-0 left-0 right-0 w-full z-30"
+        >
+          <div className="py-8 bg-black/20 backdrop-blur-sm">
+            <Marquee speed={30} className="h-16">
+              {techLogos.map((Logo, index) => (
+                <div
+                  key={index}
+                  className="relative h-full w-fit mx-[4rem] flex items-center justify-start"
+                >
+                  <Logo />
+                </div>
+              ))}
+            </Marquee>
+          </div>
+        </motion.div>
       </section>
 
-      {/* Features Section */}
-      <section className="relative py-24 px-4 md:px-8 lg:px-16 bg-gradient-to-b from-black to-gray-900">
+      {/* Features Section - ensure this starts after the hero section */}
+      <section className="relative py-24 px-4 md:px-8 lg:px-16 bg-gradient-to-b from-black to-gray-900 mt-[50vh]">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial="hidden"
