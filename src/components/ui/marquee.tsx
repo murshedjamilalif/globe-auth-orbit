@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
@@ -17,50 +16,40 @@ export const Marquee: React.FC<MarqueeProps> = ({
   pauseOnHover = true,
   className = '',
 }) => {
-  const marqueeRef = useRef<HTMLDivElement>(null);
-  const [contentWidth, setContentWidth] = React.useState(0);
-
-  useEffect(() => {
-    if (marqueeRef.current) {
-      const updateWidth = () => {
-        if (marqueeRef.current) {
-          const containerWidth = marqueeRef.current.scrollWidth;
-          setContentWidth(containerWidth);
-        }
-      };
-
-      // Initial measurement
-      updateWidth();
-      
-      // Update on resize
-      window.addEventListener('resize', updateWidth);
-      return () => window.removeEventListener('resize', updateWidth);
-    }
-  }, [children]);
-
   return (
-    <div className={`overflow-hidden relative w-full ${className}`}>
-      <motion.div
-        ref={marqueeRef}
-        className="flex whitespace-nowrap items-center"
-        animate={{
-          x: direction === 'left' ? -contentWidth : contentWidth,
-        }}
-        initial={{
-          x: direction === 'left' ? 0 : -contentWidth,
-        }}
-        transition={{
-          repeat: Infinity,
-          repeatType: 'loop',
-          duration: speed,
-          ease: 'linear',
-        }}
-        whileHover={pauseOnHover ? { animationPlayState: 'paused' } : undefined}
+    <div className={`w-full overflow-hidden ${className}`}>
+      <div
+        className="inline-flex flex-nowrap"
+        style={{
+          '--animation-duration': `${speed}s`,
+        } as React.CSSProperties}
       >
-        {children}
-        {/* Duplicate children for seamless looping */}
-        {children}
-      </motion.div>
+        <div
+          className={`flex items-center animate-marquee whitespace-nowrap ${direction === 'right' ? 'animate-marquee-reverse' : ''}`}
+          style={{
+            animationDuration: `${speed}s`,
+          }}
+        >
+          {React.Children.map(children, (child, index) => (
+            <React.Fragment key={`item-${index}`}>
+              {child}
+            </React.Fragment>
+          ))}
+        </div>
+        
+        <div
+          className={`flex items-center animate-marquee whitespace-nowrap ${direction === 'right' ? 'animate-marquee-reverse' : ''}`}
+          style={{
+            animationDuration: `${speed}s`,
+          }}
+        >
+          {React.Children.map(children, (child, index) => (
+            <React.Fragment key={`duplicate-${index}`}>
+              {child}
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

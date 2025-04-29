@@ -2,51 +2,76 @@
 import { cn } from "../../lib/utils";
 import { motion, MotionValue } from "framer-motion";
 import React from "react";
-
-const transition = {
-  duration: 0,
-  ease: "linear",
-};
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 
 export const GoogleGeminiEffect = ({
-  pathLengths,
+  pathLengths = Array(5).fill(0),
   title,
   description,
   className,
-  buttonText,
 }: {
-  pathLengths: MotionValue[];
-  title?: string;
-  description?: string;
+  pathLengths?: MotionValue<number>[];
+  title?: string | React.ReactNode;
+  description?: string | React.ReactNode;
   className?: string;
-  buttonText?: string;
 }) => {
+  const transition = {
+    duration: 2,
+    ease: "easeInOut",
+    repeat: Infinity,
+    repeatType: "reverse" as const,
+    repeatDelay: 0.5,
+  };
+
   return (
-    <div className={cn("sticky top-80", className)}>
-      <motion.p 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="text-lg md:text-7xl font-bold pb-4 text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-300 tracking-tight"
-      >
-        {title || `Build with Aceternity UI`}
-      </motion.p>
-      <motion.p 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        className="text-xs md:text-xl font-normal text-center text-neutral-400 mt-4 max-w-2xl mx-auto"
-      >
-        {description ||
-          `Scroll this component and see the bottom SVG come to life wow this
-        works!`}
-      </motion.p>
+    <div className={cn("w-full", className)}>
+      <div className="absolute inset-0 h-full w-full bg-black z-0" />
+      <div className="relative z-10 flex flex-col items-center justify-center h-screen">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-[rgba(255,255,255,0.2)] pb-4 px-4 mt-0">
+          {title || "Google Gemini"}
+        </h1>
+        <p className="text-center max-w-lg mx-auto text-white/80 text-sm md:text-base lg:text-lg mb-6 px-4">
+          {description ||
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
+        </p>
+        
+        {/* Start Coding Journey Button */}
+         <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }} 
+          animate={{ opacity: 1, scale: 1 }} 
+          transition={{ duration: 0.5, delay: 0.6 }} 
+          className="flex justify-center w-full px-4 max-w-xs mx-auto"
+        >
+          <motion.div 
+            whileHover={{ scale: 1.03 }} 
+            whileTap={{ scale: 0.98 }} 
+            className="relative group w-full"
+          >
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 rounded-full blur-md opacity-70 group-hover:opacity-100 animate-pulse-slow transition-opacity duration-500"></div>
+            <Link to="/practice" className="relative px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-600 hover:to-blue-800 rounded-full font-bold text-white flex items-center justify-center shadow-2xl group border border-blue-600/50 text-sm sm:text-base overflow-hidden w-full">
+              <span className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span className="relative z-10 flex items-center">
+                Start Coding Journey
+                <motion.div 
+                  initial={{ x: 0 }} 
+                  whileHover={{ x: 5 }} 
+                  transition={{ type: "spring", stiffness: 400 }} 
+                  className="ml-2 bg-blue-500 rounded-full p-1"
+                >
+                  <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" />
+                </motion.div>
+              </span>
+            </Link>
+          </motion.div>
+        </motion.div> 
+      </div>
       <svg
         width="1440"
         height="890"
         viewBox="0 0 1440 890"
         xmlns="http://www.w3.org/2000/svg"
-        className="absolute -top-60 md:-top-40 w-full"
+        className="absolute top-0 w-full md:scale-100"
       >
         <motion.path
           d="M0 663C145.5 663 191 666.265 269 647C326.5 630 339.5 621 397.5 566C439 531.5 455 529.5 490 523C509.664 519.348 521 503.736 538 504.236C553.591 504.236 562.429 514.739 584.66 522.749C592.042 525.408 600.2 526.237 607.356 523.019C624.755 515.195 641.446 496.324 657 496.735C673.408 496.735 693.545 519.572 712.903 526.769C718.727 528.934 725.184 528.395 730.902 525.965C751.726 517.115 764.085 497.106 782 496.735C794.831 496.47 804.103 508.859 822.469 518.515C835.13 525.171 850.214 526.815 862.827 520.069C875.952 513.049 889.748 502.706 903.5 503.736C922.677 505.171 935.293 510.562 945.817 515.673C954.234 519.76 963.095 522.792 972.199 524.954C996.012 530.611 1007.42 534.118 1034 549C1077.5 573.359 1082.5 594.5 1140 629C1206 670 1328.5 662.5 1440 662.5"
