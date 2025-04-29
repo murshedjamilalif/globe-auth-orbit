@@ -7,14 +7,14 @@ const LoginPage: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center bg-black overflow-hidden">
       {/* Globe section (Left) */}
-      <div className="flex-1 flex items-center justify-center w-full relative z-10 p-6">
-        <div className="max-w-xl w-full">
-          <Globe />
+      <div className="flex-1 flex items-center justify-end md:justify-center w-full relative z-10 p-6 lg:pr-10">
+        <div className="max-w-md w-full">
+          <Globe className="scale-90 md:scale-85" />
         </div>
       </div>
       
       {/* Form section (Right) */}
-      <div className="flex-1 flex items-center justify-center w-full p-6">
+      <div className="flex-1 flex items-center justify-start md:justify-center w-full p-6 lg:pl-10">
         <AuthForm />
       </div>
       

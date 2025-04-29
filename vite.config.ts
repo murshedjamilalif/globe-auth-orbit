@@ -23,12 +23,11 @@ export default defineConfig(({ mode }) => ({
   // Override TypeScript configuration to work around the TS6310 error
   optimizeDeps: {
     esbuildOptions: {
-      tsconfigRaw: {
+      tsconfigRaw: JSON.stringify({
         compilerOptions: {
-          // Add compiler options that don't conflict with the tsconfig references
           preserveSymlinks: true,
         }
-      }
+      })
     }
   },
 }));
