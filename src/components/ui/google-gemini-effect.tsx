@@ -36,12 +36,12 @@ export const GoogleGeminiEffect = ({
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
         </p>
         
-        {/* Start Coding Journey Button */}
+        {/* Start Coding Button */}
          <motion.div 
           initial={{ opacity: 0, scale: 0.9 }} 
           animate={{ opacity: 1, scale: 1 }} 
           transition={{ duration: 0.5, delay: 0.6 }} 
-          className="flex justify-center w-full px-4 max-w-xs mx-auto"
+          className="flex justify-center w-full px-4 max-w-[200px] mx-auto"
         >
           <motion.div 
             whileHover={{ scale: 1.03 }} 
@@ -49,17 +49,17 @@ export const GoogleGeminiEffect = ({
             className="relative group w-full"
           >
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 rounded-full blur-md opacity-70 group-hover:opacity-100 animate-pulse-slow transition-opacity duration-500"></div>
-            <Link to="/practice" className="relative px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-600 hover:to-blue-800 rounded-full font-bold text-white flex items-center justify-center shadow-2xl group border border-blue-600/50 text-sm sm:text-base overflow-hidden w-full">
+            <Link to="/practice" className="relative px-4 py-3 sm:px-5 sm:py-3 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-600 hover:to-blue-800 rounded-full font-bold text-white flex items-center justify-center shadow-2xl group border border-blue-600/50 text-sm overflow-hidden w-full">
               <span className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               <span className="relative z-10 flex items-center">
-                Start Coding Journey
+                Start Coding
                 <motion.div 
                   initial={{ x: 0 }} 
                   whileHover={{ x: 5 }} 
                   transition={{ type: "spring", stiffness: 400 }} 
                   className="ml-2 bg-blue-500 rounded-full p-1"
                 >
-                  <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" />
+                  <ArrowRight className="h-3 w-3" />
                 </motion.div>
               </span>
             </Link>

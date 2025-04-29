@@ -1,14 +1,13 @@
-
 import { Code, BarChart3, GitMerge, Timer, Hash, Binary, Workflow, LineChart, Layers, SlidersHorizontal, Network, GitFork, File as FileTree, Server, FlaskConical } from 'lucide-react';
 import React from 'react';
 
-type PatternIcon = React.ElementType;
+type PatternIcon = typeof Code;
 
 export const patternData = [
   {
     id: 'arrays',
     name: 'Arrays',
-    icon: Code as PatternIcon,
+    icon: Code,
     colorClass: 'bg-teal-500/20',
     progressColorClass: 'bg-teal-500 h-2 rounded-full',
     problemCount: 25,
@@ -31,7 +30,7 @@ export const patternData = [
   {
     id: 'two-pointers',
     name: 'Two Pointers',
-    icon: GitMerge as PatternIcon,
+    icon: GitMerge,
     colorClass: 'bg-blue-500/20',
     progressColorClass: 'bg-blue-500 h-2 rounded-full',
     problemCount: 18,
@@ -54,7 +53,7 @@ export const patternData = [
   {
     id: 'sliding-window',
     name: 'Sliding Window',
-    icon: SlidersHorizontal as PatternIcon,
+    icon: SlidersHorizontal,
     colorClass: 'bg-amber-500/20',
     progressColorClass: 'bg-amber-500 h-2 rounded-full',
     problemCount: 15,
@@ -77,7 +76,7 @@ export const patternData = [
   {
     id: 'binary-search',
     name: 'Binary Search',
-    icon: Binary as PatternIcon,
+    icon: Binary,
     colorClass: 'bg-purple-500/20',
     progressColorClass: 'bg-purple-500 h-2 rounded-full',
     problemCount: 12,
@@ -100,7 +99,7 @@ export const patternData = [
   {
     id: 'dynamic-programming',
     name: 'Dynamic Programming',
-    icon: Workflow as PatternIcon,
+    icon: Workflow,
     colorClass: 'bg-green-500/20',
     progressColorClass: 'bg-green-500 h-2 rounded-full',
     problemCount: 20,

@@ -1,5 +1,4 @@
-import React, { useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 
 interface MarqueeProps {
   children: React.ReactNode;
@@ -16,16 +15,22 @@ export const Marquee: React.FC<MarqueeProps> = ({
   pauseOnHover = true,
   className = '',
 }) => {
+  const hoverStyle = pauseOnHover ? { 
+    '&:hover div': { 
+      animationPlayState: 'paused' 
+    } 
+  } : {};
+
   return (
-    <div className={`w-full overflow-hidden ${className}`}>
-      <div
-        className="inline-flex flex-nowrap"
-        style={{
-          '--animation-duration': `${speed}s`,
-        } as React.CSSProperties}
-      >
+    <div 
+      className={`w-full overflow-hidden ${className}`}
+      style={hoverStyle as React.CSSProperties}
+    >
+      <div className="inline-flex flex-nowrap">
         <div
-          className={`flex items-center animate-marquee whitespace-nowrap ${direction === 'right' ? 'animate-marquee-reverse' : ''}`}
+          className={`flex items-center ${
+            direction === 'right' ? 'animate-marquee-reverse' : 'animate-marquee'
+          } whitespace-nowrap`}
           style={{
             animationDuration: `${speed}s`,
           }}
@@ -38,7 +43,9 @@ export const Marquee: React.FC<MarqueeProps> = ({
         </div>
         
         <div
-          className={`flex items-center animate-marquee whitespace-nowrap ${direction === 'right' ? 'animate-marquee-reverse' : ''}`}
+          className={`flex items-center ${
+            direction === 'right' ? 'animate-marquee-reverse' : 'animate-marquee'
+          } whitespace-nowrap`}
           style={{
             animationDuration: `${speed}s`,
           }}

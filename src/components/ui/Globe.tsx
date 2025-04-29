@@ -1,8 +1,11 @@
-
 import React, { useRef, useEffect } from 'react';
 import createGlobe from 'cobe';
 
-const Globe: React.FC = () => {
+interface GlobeProps {
+  className?: string;
+}
+
+const Globe: React.FC<GlobeProps> = ({ className }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -25,18 +28,18 @@ const Globe: React.FC = () => {
       width: width * 2,
       height: width * 2,
       phi: 0,
-      theta: 0.3,
+      theta: 0.2,
       dark: 1,
-      diffuse: 3,
-      mapSamples: 16000,
-      mapBrightness: 1.2,
-      baseColor: [0.1, 0.1, 0.2],
-      markerColor: [0.9, 0.4, 0.1],
-      glowColor: [0.4, 0.4, 1],
+      diffuse: 1.1,
+      mapSamples: 30000,
+      mapBrightness: 8,
+      baseColor: [0.1, 0.1, 0.1],
+      markerColor: [0.3, 0.7, 1],
+      glowColor: [0.3, 0.5, 1],
       markers: [],
       onRender: (state) => {
         state.phi = phi;
-        phi += 0.005;
+        phi += 0.002;
         state.width = width * 2;
         state.height = width * 2;
       },
@@ -56,11 +59,17 @@ const Globe: React.FC = () => {
   
   return (
     <div
-      className="w-full max-w-xl aspect-square mx-auto relative"
+      className={`w-full aspect-square mx-auto relative ${className || ''}`}
     >
+      {/* Inner glow effect */}
+      <div className="absolute inset-0 rounded-full blur-3xl bg-gradient-to-br from-blue-500/30 via-blue-300/10 to-transparent opacity-50" />
+      
+      {/* Outer glow effect */}
+      <div className="absolute inset-[10%] rounded-full blur-[100px] bg-blue-500/20 opacity-70" />
+      
       <canvas
         ref={canvasRef}
-        className="w-full h-full opacity-0 transition-opacity duration-1000"
+        className="w-full h-full opacity-0 transition-opacity duration-1000 relative z-10"
         style={{ contain: 'layout paint size' }}
       />
     </div>

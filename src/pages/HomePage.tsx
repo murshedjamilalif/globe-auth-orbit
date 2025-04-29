@@ -296,7 +296,7 @@ const HomePage: React.FC = () => {
     <div className="min-h-screen bg-black text-white overflow-hidden">
       {/* Hero Section with Gemini Effect */}
       <section ref={geminiRef} className="relative min-h-screen w-full overflow-hidden">
-      <GoogleGeminiEffect pathLengths={[pathLengthFirst, pathLengthSecond, pathLengthThird, pathLengthFourth, pathLengthFifth]} title="Code. Learn. Conquer." description="Master algorithms and data structures with our innovative learning platform designed for modern developers." className="z-10" />
+        <GoogleGeminiEffect pathLengths={[pathLengthFirst, pathLengthSecond, pathLengthThird, pathLengthFourth, pathLengthFifth]} title="Code. Learn. Conquer." description="Master algorithms and data structures with our innovative learning platform designed for modern developers." className="z-10" />
       </section>
 
       {/* Programming Languages Section - as a standalone section */}
@@ -307,7 +307,7 @@ const HomePage: React.FC = () => {
           transition={{ delay: 0.8, duration: 0.8 }}
           className="flex gap-3 sm:gap-4 md:gap-6 flex-wrap justify-center max-w-5xl mx-auto"
         >
-          {[{
+            {[{
             name: 'Python',
             color: 'bg-gradient-to-br from-blue-500 to-blue-700',
             borderColor: 'border-blue-400',
@@ -344,8 +344,8 @@ const HomePage: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 + index * 0.1, duration: 0.5 }}
               whileHover={{
-                scale: 1.05,
-                y: -5,
+            scale: 1.05,
+            y: -5,
                 boxShadow: skill.hoverGlow === 'blue' ? '0 0 30px rgba(59, 130, 246, 0.5)' : 
                           skill.hoverGlow === 'yellow' ? '0 0 30px rgba(251, 191, 36, 0.5)' : 
                           skill.hoverGlow === 'red' ? '0 0 30px rgba(239, 68, 68, 0.5)' : 
@@ -354,15 +354,15 @@ const HomePage: React.FC = () => {
               }}
               className={`px-3 py-2 md:px-6 md:py-3 rounded-xl ${skill.color} text-white font-medium text-sm md:text-base border border-opacity-30 ${skill.borderColor} shadow-lg backdrop-blur-sm transition-all duration-300 cursor-pointer relative overflow-hidden group`}
             >
-              <span className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              <div className="flex items-center justify-center gap-2">
+                <span className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                <div className="flex items-center justify-center gap-2">
                 <span className="text-lg sm:text-xl">{skill.icon}</span>
-                <span>{skill.name}</span>
-              </div>
-              <div className="absolute -bottom-1 left-0 w-full h-1 bg-white opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+                  <span>{skill.name}</span>
+                </div>
+                <div className="absolute -bottom-1 left-0 w-full h-1 bg-white opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
             </motion.div>
           ))}
-        </motion.div>
+          </motion.div>
       </section>
 
       {/* Terminal Demo Section */}
@@ -373,8 +373,8 @@ const HomePage: React.FC = () => {
           transition={{ duration: 0.5, delay: 1.2 }}
           className="w-full max-w-xl mx-auto"
         >
-          <TerminalDemo />
-        </motion.div>
+            <TerminalDemo />
+          </motion.div>
       </section>
 
       {/* Technology Marquee */}
@@ -388,7 +388,7 @@ const HomePage: React.FC = () => {
           <div className="bg-black/20 backdrop-blur-sm py-2 md:py-4">
             <Marquee speed={10} pauseOnHover={false} className="h-12 md:h-16">
               {techLogos.map((Logo, index) => (
-                <div key={index} className="relative h-full w-fit mx-[1.5rem] md:mx-[3rem] flex items-center justify-start">
+                <div key={index} className="relative h-full w-fit mx-[1rem] md:mx-[2rem] flex items-center justify-start">
                   <Logo />
                 </div>
               ))}

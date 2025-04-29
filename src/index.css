@@ -17,7 +17,8 @@
 }
 
 .animate-marquee {
-  animation: marquee 15s linear infinite;
+  animation: marquee 10s linear infinite;
+  will-change: transform;
 }
 
 @keyframes marquee-reverse {
@@ -26,7 +27,8 @@
 }
 
 .animate-marquee-reverse {
-  animation: marquee-reverse 15s linear infinite;
+  animation: marquee-reverse 10s linear infinite;
+  will-change: transform;
 }
 
 @keyframes float {
