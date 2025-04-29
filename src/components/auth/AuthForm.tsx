@@ -1,9 +1,10 @@
+
 import React, { useState } from 'react';
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Separator } from "../ui/separator";
-import { LockIcon, LogInIcon, UserIcon } from "lucide-react";
+import { LogIn, Mail } from "lucide-react";
 
 type AuthMode = "login" | "register";
 
@@ -24,12 +25,12 @@ const AuthForm = () => {
   };
   
   return (
-    <div className="w-full max-w-md bg-black/40 backdrop-blur-md rounded-xl border border-gray-800/50 overflow-hidden shadow-2xl">
+    <div className="w-full max-w-md bg-black/70 backdrop-blur-md rounded-xl border border-gray-800/50 overflow-hidden shadow-2xl">
       {/* Header */}
       <div className="p-6 pb-8 bg-gradient-to-b from-blue-700 to-blue-900 text-center">
         <div className="flex justify-center">
-          <div className="inline-block p-2.5 bg-gradient-to-br from-blue-400 to-cyan-400 rounded mb-4">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div className="inline-block p-2.5 bg-gradient-to-br from-cyan-400 to-green-400 rounded mb-4">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 2L1 7l11 5 9-4.09V17h2V7L12 2z" fill="#fff"/>
               <path d="M11 18.95V22h2v-3.05C18.18 18.51 22 16.53 22 14V9.08L12 14l-11-5V14c0 2.53 3.82 4.51 10 4.95z" fill="#fff"/>
             </svg>
@@ -39,14 +40,34 @@ const AuthForm = () => {
         <p className="text-blue-200 mt-2">Choose your preferred way to sign in</p>
       </div>
       
+      {/* Auth Tabs */}
+      <div className="grid grid-cols-2 border-b border-gray-800">
+        <button 
+          className={`py-3 text-center font-medium transition-colors ${
+            mode === 'login' 
+              ? 'bg-black/30 text-white border-b-2 border-blue-500' 
+              : 'text-gray-400 hover:text-gray-300 bg-transparent'
+          }`}
+          onClick={() => setMode('login')}
+        >
+          Sign In
+        </button>
+        <button 
+          className={`py-3 text-center font-medium transition-colors ${
+            mode === 'register' 
+              ? 'bg-black/30 text-white border-b-2 border-blue-500' 
+              : 'text-gray-400 hover:text-gray-300 bg-transparent'
+          }`}
+          onClick={() => setMode('register')}
+        >
+          Sign Up
+        </button>
+      </div>
+      
       {/* Body */}
       <div className="p-6 space-y-6">
         {/* OAuth Buttons */}
         <div className="space-y-3">
-          <Button variant="outline" className="w-full justify-center items-center border-gray-700 bg-black/30 hover:bg-black/50 text-white">
-            <span className="mr-2">Sign Up</span>
-          </Button>
-          
           <Button variant="outline" className="w-full justify-start items-center border-gray-700 bg-black/30 hover:bg-black/50 text-white">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-5 h-5 mr-2">
               <path
@@ -66,15 +87,14 @@ const AuthForm = () => {
                 d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
               />
             </svg>
-            Google
+            Sign in with Google
           </Button>
           
-          <Button variant="outline" className="w-full justify-start items-center border-gray-700 bg-transparent hover:bg-gray-800">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-5 h-5 mr-2" fill="none">
-              <rect width="24" height="24" rx="12" fill="#000"/>
-              <path d="M16.63 16.45c-.34.44-.9.71-1.48.71-.58 0-1.14-.27-1.48-.71L12 13.75l-1.67 2.7c-.34.44-.9.71-1.48.71-.58 0-1.14-.27-1.48-.71-.29-.37-.4-.87-.31-1.34.09-.47.37-.88.76-1.12l2.31-1.56-2.31-1.56c-.39-.24-.67-.65-.76-1.12-.09-.47.02-.97.31-1.34.34-.44.9-.71 1.48-.71.58 0 1.14.27 1.48.71L12 10.25l1.67-2.7c.34-.44.9-.71 1.48-.71.58 0 1.14.27 1.48.71.29.37.4.87.31 1.34-.09.47-.37.88-.76 1.12l-2.31 1.56 2.31 1.56c.39.24.67.65.76 1.12.09.47-.02.97-.31 1.34z" fill="#fff"/>
+          <Button variant="outline" className="w-full justify-start items-center border-gray-700 bg-black/30 hover:bg-black/50 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-5 h-5 mr-2" fill="white">
+              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
             </svg>
-            GitHub
+            Sign in with GitHub
           </Button>
         </div>
         
@@ -84,13 +104,28 @@ const AuthForm = () => {
           </div>
           <div className="relative flex justify-center text-xs uppercase">
             <span className="bg-black/30 px-2 text-gray-400 backdrop-blur-sm">
-              OR CONTINUE WITH
+              OR CONTINUE WITH EMAIL
             </span>
           </div>
         </div>
         
         {/* Email Form */}
-        <div className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {mode === 'register' && (
+            <div className="space-y-2">
+              <Label htmlFor="name" className="text-gray-300">Full Name</Label>
+              <Input
+                id="name"
+                type="text"
+                placeholder="John Doe"
+                className="bg-black/30 border-gray-700/50 text-white placeholder-gray-500"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required={mode === 'register'}
+              />
+            </div>
+          )}
+          
           <div className="space-y-2">
             <Label htmlFor="email" className="text-gray-300">Email</Label>
             <Input
@@ -100,16 +135,47 @@ const AuthForm = () => {
               className="bg-black/30 border-gray-700/50 text-white placeholder-gray-500"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <Label htmlFor="password" className="text-gray-300">Password</Label>
+              {mode === 'login' && (
+                <a href="#" className="text-xs text-blue-400 hover:text-blue-300">
+                  Forgot password?
+                </a>
+              )}
+            </div>
+            <Input
+              id="password"
+              type="password"
+              placeholder="••••••••"
+              className="bg-black/30 border-gray-700/50 text-white placeholder-gray-500"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
           
           <Button 
+            type="submit"
             className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white"
-            onClick={() => console.log("Continue with email")}
           >
-            Continue with Email
+            {mode === 'login' ? (
+              <>
+                <LogIn className="mr-2 h-4 w-4" />
+                Sign In
+              </>
+            ) : (
+              <>
+                <Mail className="mr-2 h-4 w-4" />
+                Sign Up
+              </>
+            )}
           </Button>
-        </div>
+        </form>
       </div>
     </div>
   );

@@ -1,7 +1,8 @@
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
-import { Code, CompassIcon, Brain, Sun, Moon, Menu, X, Mail, Grid, BookOpen, Award, LogIn } from 'lucide-react';
+import { Code, Brain, Sun, Moon, Menu, X, Mail, Grid, BookOpen, Award, LogIn } from 'lucide-react';
 import AuthModal from '../auth/AuthModal';
 
 const Navbar: React.FC = () => {
@@ -11,7 +12,7 @@ const Navbar: React.FC = () => {
   const [authModalOpen, setAuthModalOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Explore', path: '/explore', icon: <CompassIcon size={18} /> },
+    { name: 'Blog', path: '/blog', icon: <BookOpen size={18} /> },
     { name: 'Practice', path: '/practice', icon: <Brain size={18} /> },
     { name: 'Prepare', path: '/certifications', icon: <Award size={18} /> },
     { name: 'Newsletter', path: '/newsletter', icon: <Mail size={18} /> },

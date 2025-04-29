@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
@@ -8,7 +9,9 @@ import MainLayout from './layouts/MainLayout';
 // Pages
 import HomePage from './pages/HomePage';
 import LearnPage from './pages/LearnPage';
-import ExplorePage from './pages/ExplorePage';
+import BlogPage from './pages/BlogPage';
+import BlogPostPage from './pages/BlogPostPage';
+import BlogEditorPage from './pages/BlogEditorPage';
 import PracticePage from './pages/PracticePage';
 import ProblemPage from './pages/ProblemPage';
 import LLDPage from './pages/LLDPage';
@@ -28,7 +31,9 @@ function App() {
           <Route path="/" element={<MainLayout />}>
             <Route index element={<HomePage />} />
             <Route path="learn" element={<LearnPage />} />
-            <Route path="explore" element={<ExplorePage />} />
+            <Route path="blog" element={<BlogPage />} />
+            <Route path="blog/:id" element={<BlogPostPage />} />
+            <Route path="blog/editor" element={<BlogEditorPage />} />
             <Route path="practice" element={<PracticePage />} />
             <Route path="problem/:id" element={<ProblemPage />} />
             <Route path="lld" element={<LLDPage />} />
