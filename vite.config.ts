@@ -26,8 +26,27 @@ export default defineConfig(({ mode }) => ({
       tsconfigRaw: JSON.stringify({
         compilerOptions: {
           preserveSymlinks: true,
+          skipLibCheck: true,
+          composite: false,
+          incremental: false,
+          tsBuildInfoFile: null,
         }
       })
     }
   },
+  esbuild: {
+    tsconfigRaw: JSON.stringify({
+      compilerOptions: {
+        composite: false,
+        skipLibCheck: true,
+        incremental: false,
+        tsBuildInfoFile: null,
+      },
+      references: undefined
+    })
+  },
+  define: {
+    // Disable TypeScript project references at build time
+    'process.env.TS_NODE_PROJECT': '""'
+  }
 }));
