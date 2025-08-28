@@ -20,33 +20,42 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // Override TypeScript configuration to work around the TS6310 error
-  optimizeDeps: {
-    esbuildOptions: {
-      tsconfigRaw: JSON.stringify({
-        compilerOptions: {
-          preserveSymlinks: true,
-          skipLibCheck: true,
-          composite: false,
-          incremental: false,
-          tsBuildInfoFile: null,
-        }
-      })
+  // Complete TypeScript override to bypass project references
+  esbuild: {
+    tsconfigRaw: {
+      compilerOptions: {
+        target: "esnext",
+        lib: ["dom", "dom.iterable", "esnext"],
+        allowJs: true,
+        skipLibCheck: true,
+        esModuleInterop: true,
+        allowSyntheticDefaultImports: true,
+        strict: true,
+        forceConsistentCasingInFileNames: true,
+        module: "esnext",
+        moduleResolution: "node",
+        resolveJsonModule: true,
+        isolatedModules: true,
+        noEmit: false,
+        jsx: "react-jsx",
+        composite: false,
+        incremental: false,
+        noEmitOnError: false
+      },
+      include: ["src/**/*"],
+      exclude: ["node_modules"]
     }
   },
-  esbuild: {
-    tsconfigRaw: JSON.stringify({
-      compilerOptions: {
-        composite: false,
-        skipLibCheck: true,
-        incremental: false,
-        tsBuildInfoFile: null,
-      },
-      references: undefined
-    })
-  },
-  define: {
-    // Disable TypeScript project references at build time
-    'process.env.TS_NODE_PROJECT': '""'
+  optimizeDeps: {
+    esbuildOptions: {
+      tsconfigRaw: {
+        compilerOptions: {
+          target: "esnext",
+          skipLibCheck: true,
+          composite: false,
+          noEmit: false
+        }
+      }
+    }
   }
 }));
